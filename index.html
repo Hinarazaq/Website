@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hina Razaq | Clinical Psychologist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage: #5C7A6A;
+    --sage-deep: #3F5A4C;
+    --sage-light: #EFF4F1;
+    --sage-mid: #B8CCBF;
+    --warm: #C4A882;
+    --warm-light: #F7F2EB;
+    --blush: #E9B8A4;
+    --blush-light: #FBEDE6;
+    --lavender: #C8C2E8;
+    --lavender-light: #F1EFFA;
+    --sun: #F2D492;
+    --ink: #1E2A24;
+    --ink-mid: #4A5B52;
+    --ink-soft: #7E9087;
+    --white: #FDFCFA;
+    --border: rgba(92,122,106,0.18);
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-hand: 'Caveat', cursive;
+    --shadow: 0 18px 40px rgba(63,90,76,0.14);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 16px;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--blush); color: var(--ink); }
+  button { font-family: inherit; }
+
+  /* SCROLL PROGRESS */
+  .progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0; z-index: 200;
+    background: linear-gradient(90deg, var(--sage), var(--blush), var(--lavender));
+  }
+
+  /* HEADER (banner + nav) */
+  .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
+
+  /* NAV */
+  nav {
+    position: relative;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.8rem 5%;
+    background: rgba(253,252,250,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(92,122,106,0.08);
+    transition: border-color .3s, padding .3s;
+  }
+  nav.scrolled { border-color: var(--border); padding: 0.75rem 5%; }
+  .nav-logo {
+    font-family: var(--font-display); font-size: 1.35rem; font-weight: 400;
+    color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: .5rem;
+  }
+  .logo-leaf { display: inline-block; transition: transform .6s; }
+  .nav-logo:hover .logo-leaf { transform: rotate(-25deg) scale(1.15); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-links a {
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-mid); text-decoration: none; font-weight: 400; position: relative;
+  }
+  .nav-links a:not(.nav-cta)::after {
+    content: ''; position: absolute; left: 0; bottom: -4px; height: 2px; width: 100%;
+    background: var(--blush); border-radius: 2px; transform: scaleX(0); transform-origin: left;
+    transition: transform .3s;
+  }
+  .nav-links a:not(.nav-cta):hover::after, .nav-links a.active::after { transform: scaleX(1); }
+  .nav-cta {
+    background: var(--sage); color: var(--white) !important;
+    padding: 0.55rem 1.3rem; border-radius: 2rem;
+    transition: background .2s, transform .2s;
+  }
+  .nav-cta:hover { background: var(--sage-deep); transform: translateY(-2px); }
+  .burger { display: none; background: none; border: 0; cursor: pointer; width: 32px; height: 24px; position: relative; }
+  .burger span { position: absolute; left: 0; right: 0; height: 2px; background: var(--ink); border-radius: 2px; transition: .3s; }
+  .burger span:nth-child(1) { top: 3px; } .burger span:nth-child(2) { top: 11px; } .burger span:nth-child(3) { top: 19px; }
+  .burger.open span:nth-child(1) { top: 11px; transform: rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { top: 11px; transform: rotate(-45deg); }
+
+  /* SHARED */
+  section { padding: 5rem 8%; position: relative; scroll-margin-top: 100px; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--warm); margin-bottom: 1rem; font-weight: 500;
+    display: inline-flex; align-items: center; gap: .6rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: currentColor; }
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 3.8vw, 3.2rem); font-weight: 300;
+    line-height: 1.12; color: var(--ink); margin-bottom: 1.5rem;
+  }
+  .section-heading em { font-style: normal; color: inherit; }
+  .hand { font-family: var(--font-hand); color: var(--blush); font-size: 1.5rem; line-height: 1; }
+  .squiggle { position: relative; white-space: nowrap; }
+  .squiggle svg { position: absolute; left: 0; bottom: -0.3em; width: 100%; height: .5em; overflow: visible; }
+  .squiggle path { stroke: var(--blush); stroke-width: 3; fill: none; stroke-linecap: round;
+    stroke-dasharray: 300; stroke-dashoffset: 300; transition: stroke-dashoffset 1.4s ease .3s; }
+  .in .squiggle path, .squiggle.in path { stroke-dashoffset: 0; }
+
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: .1s; } .reveal.d2 { transition-delay: .2s; } .reveal.d3 { transition-delay: .3s; } .reveal.d4 { transition-delay: .4s; }
+
+  .btn-primary, .btn-secondary {
+    padding: 0.9rem 2rem; border-radius: 2rem; text-decoration: none;
+    font-size: 0.9rem; font-weight: 400; letter-spacing: 0.04em; display: inline-flex;
+    align-items: center; gap: .5rem; cursor: pointer; border: 0;
+    transition: background .25s, transform .25s, box-shadow .25s;
+  }
+  .btn-primary { background: var(--sage); color: var(--white); box-shadow: 0 8px 20px rgba(92,122,106,.28); }
+  .btn-primary:hover { background: var(--sage-deep); transform: translateY(-3px); box-shadow: 0 14px 28px rgba(92,122,106,.35); }
+  .btn-primary .arrow { transition: transform .25s; }
+  .btn-primary:hover .arrow { transform: translateX(4px); }
+  .btn-secondary { background: var(--white); color: var(--sage); border: 1px solid var(--sage-mid); }
+  .btn-secondary:hover { background: var(--sage-light); transform: translateY(-3px); }
+
+  /* HERO */
+  .hero {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+    align-items: start; gap: 3rem; padding: 1rem 6% 0.5rem 8%; overflow: hidden;
+    background: linear-gradient(180deg, #f8f6f3 0%, #f3f0ef 100%);
+  }
+  .hero > * { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 1.2rem; font-weight: 500;
+    background: rgba(255,255,255,0.5); padding: .3rem .8rem; border-radius: 999px; border: 1px solid rgba(92,122,106,0.12);
+  }
+  .badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #2D9A5F; position: relative; }
+  .badge-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #2D9A5F; animation: ping 1.8s infinite; }
+  @keyframes ping { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(3); opacity: 0; } }
+  .hero-name {
+    font-family: var(--font-display); font-size: clamp(3.3rem, 6vw, 6rem);
+    font-weight: 600; line-height: 0.96; color: var(--ink); margin-bottom: 0.95rem;
+    letter-spacing: -0.04em;
+  }
+  .hero-name span { display: inline-block; opacity: 0; transform: translateY(24px) rotate(2deg);
+    animation: rise .8s ease forwards; }
+  .hero-name em { font-style: normal; color: inherit; font-weight: 600; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .hero-rotator {
+    font-family: var(--font-display); font-size: clamp(1.3rem, 2vw, 1.8rem); color: var(--ink-mid);
+    margin-bottom: 1.2rem; min-height: 2.2em;
+  }
+  .rot-word { color: var(--sage-deep); font-style: italic; display: inline-block; border-bottom: 2px dotted var(--blush);
+    transition: opacity .4s, transform .4s; }
+  .rot-word.out { opacity: 0; transform: translateY(-12px); }
+  .hero-desc { font-size: 1.02rem; color: var(--ink-mid); line-height: 1.8; max-width: 440px; margin-bottom: 2.25rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .hero-note { margin-top: 1.25rem; display: flex; align-items: center; gap: .75rem; }
+  .hero-note .hand { font-size: 1.6rem; color: var(--ink-soft); }
+  .hero-note svg { width: 48px; height: 30px; stroke: var(--ink-soft); fill: none; stroke-width: 1.5; }
+
+  .hero-visual { min-height: 420px; display: flex; align-items: flex-start; justify-content: center; position: relative; overflow: hidden; padding-top: 3rem; }
+  .photo-frame {
+    width: min(420px, 92%); aspect-ratio: 1 / 1.05; overflow: hidden; background: #f5f5ec;
+    border-radius: 1.5rem; box-shadow: var(--shadow);
+    border: 6px solid var(--white); display: flex; align-items: center; justify-content: center;
+  }
+  .photo-frame img { width: 100%; height: 100%; object-fit: contain; }
+  @keyframes morph {
+    0%,100% { border-radius: 58% 42% 55% 45% / 45% 55% 45% 55%; }
+    33% { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; }
+    66% { border-radius: 52% 48% 62% 38% / 40% 60% 42% 58%; }
+  }
+  .ring { position: absolute; width: min(350px, 96%); aspect-ratio: 1; border: 1.5px dashed var(--sage-mid);
+    border-radius: 50%; animation: spin 60s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .float-chip {
+    position: absolute; background: var(--white); border-radius: 1rem; padding: .7rem 1rem;
+    box-shadow: var(--shadow); display: flex; align-items: center; gap: .7rem; border: 1px solid var(--border);
+    animation: bob 5s ease-in-out infinite; cursor: default; transition: transform .3s; z-index: 2;
+  }
+  .float-chip:hover { animation-play-state: paused; transform: scale(1.06) rotate(-2deg); }
+  .float-chip .ic { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-size: 1.1rem; }
+  .chip-label { font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); line-height: 1.2; }
+  .chip-value { font-family: var(--font-display); font-size: 1.05rem; color: var(--ink); line-height: 1.25; }
+  .c1 { top: 4%; left: -2%; } .c1 .ic { background: var(--sage-light); }
+  .c2 { top: 30%; right: -4%; animation-delay: -1.5s; } .c2 .ic { background: var(--blush-light); }
+  .c3 { bottom: 16%; left: -6%; animation-delay: -3s; } .c3 .ic { background: var(--lavender-light); }
+  .c4 { bottom: 0; right: 4%; animation-delay: -2s; } .c4 .ic { background: #FBF4E1; }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+
+  /* MOOD CHECK-IN */
+  .mood-section { background: var(--white); text-align: center; overflow: hidden; }
+  .mood-section .section-heading { max-width: 700px; margin-left: auto; margin-right: auto; }
+  .mood-sub { color: var(--ink-mid); max-width: 520px; margin: 0 auto 2.5rem; }
+  .moods { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-bottom: 2rem; }
+  .mood {
+    background: var(--white); border: 1.5px solid var(--border); border-radius: 1.25rem;
+    padding: 1.1rem 1.25rem .9rem; min-width: 118px; cursor: pointer; color: var(--ink-mid);
+    font-size: .85rem; display: flex; flex-direction: column; align-items: center; gap: .35rem;
+    transition: transform .25s, border-color .25s, background .25s, box-shadow .25s;
+  }
+  .mood .emo { font-size: 2.1rem; transition: transform .35s cubic-bezier(.3,1.6,.5,1); }
+  .mood:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .mood:hover .emo { transform: scale(1.25) rotate(-8deg); }
+  .mood.active { border-color: var(--sage); background: var(--sage-light); color: var(--ink); box-shadow: var(--shadow); }
+  .mood-result {
+    max-width: 620px; margin: 0 auto; text-align: left; background: var(--warm-light);
+    border-radius: 1.5rem; padding: 0 2rem; max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height .6s ease, opacity .5s ease, padding .5s ease; border: 1px solid transparent;
+  }
+  .mood-result.show { max-height: 480px; opacity: 1; padding: 2rem; border-color: rgba(196,168,130,.3); }
+  .mood-result h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; margin-bottom: .5rem; }
+  .mood-result p { color: var(--ink-mid); margin-bottom: 1rem; }
+  .mood-result .suggest { font-size: .85rem; color: var(--ink-soft); margin-bottom: 1.25rem; }
+  .mood-result .suggest b { color: var(--sage-deep); font-weight: 500; }
+  .mood-disclaimer { display: none; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: start; }
+  .about-text p { color: var(--ink-mid); margin-bottom: 1.25rem; line-height: 1.85; }
+  .about-text .hand { display: block; margin-top: 1rem; font-size: 1.9rem; color: var(--sage); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px;
+    background: linear-gradient(var(--sage-mid), var(--blush)); border-radius: 2px; }
+  .tl-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.5rem; font-weight: 400; }
+  .qual-item {
+    position: relative; margin-bottom: 1.25rem; padding: 1.2rem 1.4rem; background: var(--white);
+    border-radius: 1rem; border: 1px solid var(--border); cursor: default;
+    transition: transform .3s, box-shadow .3s, background .3s;
+  }
+  .qual-item::before { content: ''; position: absolute; left: calc(-2rem + 1px); top: 1.5rem; width: 14px; height: 14px;
+    border-radius: 50%; background: var(--white); border: 3px solid var(--sage); transition: background .3s, transform .3s; }
+  .qual-item:hover { transform: translateX(8px); box-shadow: var(--shadow); background: var(--sage-light); }
+  .qual-item:hover::before { background: var(--blush); transform: scale(1.3); }
+  .qual-year { font-size: 0.72rem; color: var(--sage); font-weight: 500; letter-spacing: 0.08em; }
+  .qual-name { font-size: 0.98rem; color: var(--ink); font-weight: 400; margin: .15rem 0; }
+  .qual-inst { font-size: 0.8rem; color: var(--ink-soft); }
+  .places { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.75rem; }
+  .places span { font-size: .78rem; padding: .4rem .9rem; border-radius: 2rem; background: var(--lavender-light); color: #5A5390; }
+
+  /* SERVICES */
+  .services-bg { background: var(--warm-light); overflow: hidden; }
+  .services-head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 1.5rem; }
+  .price-tag {
+    background: var(--white); border-radius: 1.25rem; padding: 1rem 1.5rem; box-shadow: var(--shadow);
+    transform: rotate(3deg); transition: transform .3s; text-align: center;
+  }
+  .price-tag:hover { transform: rotate(-2deg) scale(1.05); }
+  .price-tag .amt { font-family: var(--font-display); font-size: 2rem; color: var(--sage-deep); line-height: 1; }
+  .price-tag .per { font-size: .75rem; color: var(--ink-soft); letter-spacing: .08em; text-transform: uppercase; }
+  .flip-hint { margin-top: 2.5rem; font-size: 1.5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+  .flip { perspective: 1200px; height: 330px; cursor: pointer; background: none; border: 0; text-align: left; padding: 0; }
+  .flip-inner { position: relative; width: 100%; height: 100%; transition: transform .8s cubic-bezier(.3,1.2,.4,1); transform-style: preserve-3d; }
+  .flip:hover .flip-inner, .flip.flipped .flip-inner { transform: rotateY(180deg); }
+  .face {
+    position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+    border-radius: 1.5rem; padding: 2rem; display: flex; flex-direction: column; border: 1px solid var(--border);
+  }
+  .front { background: var(--white); justify-content: space-between; }
+  .front .big-ic { font-size: 3rem; width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; }
+  .front .service-title { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.15; color: var(--ink); }
+  .front .turn { font-size: .75rem; color: var(--ink-soft); letter-spacing: .08em; text-transform: uppercase; display: flex; align-items: center; gap: .4rem; }
+  .back { transform: rotateY(180deg); color: var(--white); justify-content: space-between; }
+  .back .service-desc { font-size: .92rem; line-height: 1.7; opacity: .95; }
+  .back .service-title { font-family: var(--font-display); font-size: 1.3rem; margin-bottom: .75rem; }
+  .service-tag { display: inline-block; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem; border-radius: 2rem; }
+  .front .service-tag { background: var(--sage-light); color: var(--sage); align-self: flex-start; }
+  .back .book-this { align-self: flex-start; background: var(--white); color: var(--ink); border-radius: 2rem; padding: .55rem 1.1rem;
+    font-size: .8rem; border: 0; cursor: pointer; transition: transform .2s; }
+  .back .book-this:hover { transform: translateX(4px); }
+  .s1 .big-ic { background: var(--sage-light); } .s1 .back { background: linear-gradient(145deg, var(--sage), var(--sage-deep)); }
+  .s2 .big-ic { background: var(--blush-light); } .s2 .back { background: linear-gradient(145deg, #D99A82, #B97660); }
+  .s3 .big-ic { background: var(--lavender-light); } .s3 .back { background: linear-gradient(145deg, #948BC9, #6D63A8); }
+  .s4 .big-ic { background: #FBF4E1; } .s4 .back { background: linear-gradient(145deg, #C9A45C, #9C7B3C); }
+
+  /* APPROACH */
+  .approach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .steps { position: relative; margin-top: 1rem; }
+  .steps-line { position: absolute; left: 27px; top: 28px; bottom: 28px; width: 2px; background: var(--border); }
+  .steps-fill { position: absolute; left: 0; top: 0; width: 100%; height: 0; background: linear-gradient(var(--sage), var(--blush)); transition: height .2s linear; }
+  .step { display: flex; gap: 1.5rem; padding: 1.1rem 0; position: relative; cursor: pointer; }
+  .step-num {
+    flex-shrink: 0; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--white); border: 2px solid var(--sage-mid); z-index: 1;
+    font-family: var(--font-display); font-size: 1.6rem; color: var(--sage); transition: all .4s;
+  }
+  .step.lit .step-num { background: var(--sage); color: var(--white); border-color: var(--sage); transform: scale(1.05); }
+  .step-body { padding-top: .6rem; }
+  .step-title { font-size: 1rem; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; display: flex; align-items: center; gap: .5rem; }
+  .step-title .chev { font-size: .75rem; color: var(--ink-soft); transition: transform .3s; }
+  .step.open .chev { transform: rotate(90deg); }
+  .step-desc { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.7; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .45s, opacity .45s; }
+  .step.open .step-desc { max-height: 160px; opacity: 1; }
+
+  .approach-side { display: flex; flex-direction: column; gap: 1.5rem; }
+  .affirm {
+    background: var(--sage-light); border-radius: 1.5rem; padding: 2.5rem; border: 1px solid var(--sage-mid);
+    position: relative; overflow: hidden;
+  }
+  .affirm::before { content: '"'; position: absolute; top: -2.5rem; right: 1rem; font-family: var(--font-display);
+    font-size: 12rem; color: var(--sage-mid); opacity: .4; line-height: 1; }
+  .affirm-text { font-family: var(--font-display); font-size: 1.55rem; font-style: italic; color: var(--ink); line-height: 1.45;
+    min-height: 4.4em; transition: opacity .4s, transform .4s; position: relative; }
+  .affirm-text.out { opacity: 0; transform: translateY(10px); }
+  .affirm-row { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; gap: 1rem; flex-wrap: wrap; }
+  .affirm-attr { font-size: 0.82rem; color: var(--ink-soft); }
+  .draw-btn { background: var(--white); border: 1px solid var(--sage-mid); color: var(--sage-deep); border-radius: 2rem;
+    padding: .5rem 1.1rem; font-size: .8rem; cursor: pointer; transition: transform .3s, background .3s; }
+  .draw-btn:hover { background: var(--white); transform: rotate(-3deg) scale(1.05); }
+  .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pill { background: var(--white); color: var(--sage); border: 1px solid var(--sage-mid); border-radius: 2rem;
+    padding: 0.45rem 1rem; font-size: 0.8rem; font-weight: 400; transition: all .25s; cursor: default; }
+  .pill:hover { background: var(--sage); color: var(--white); transform: translateY(-3px) rotate(-2deg); }
+
+  /* BREATHE */
+  .breathe-section { background: linear-gradient(180deg, var(--lavender-light), var(--sage-light)); text-align: center; overflow: hidden; }
+  .breathe-wrap { display: grid; place-items: center; margin: 2.5rem auto 2rem; width: 300px; height: 300px; position: relative; }
+  .breathe-ring { position: absolute; inset: 0; border-radius: 50%; border: 1.5px dashed rgba(92,122,106,.35); }
+  .breathe-circle {
+    width: 130px; height: 130px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff 0%, var(--sage-mid) 45%, var(--sage) 100%);
+    box-shadow: 0 0 0 18px rgba(184,204,191,.25), 0 0 60px rgba(92,122,106,.35);
+    display: grid; place-items: center; color: var(--white); transition: transform 4s ease-in-out;
+  }
+  .breathe-circle.grow { transform: scale(2); }
+  .breathe-word { font-family: var(--font-display); font-size: 1.3rem; font-style: italic; text-shadow: 0 1px 6px rgba(0,0,0,.2); }
+  .breathe-count { font-size: .8rem; color: var(--ink-soft); margin-top: 1rem; min-height: 1.4em; }
+  .breathe-sub { color: var(--ink-mid); max-width: 480px; margin: 0 auto; }
+
+  /* FAQ */
+  .faq-wrap { max-width: 780px; margin: 0 auto; }
+  .faq-wrap .section-heading, .faq-wrap .section-label { text-align: center; display: block; }
+  .faq-wrap .section-label::before { display: none; }
+  details { border-bottom: 1px solid var(--border); padding: 1.25rem 0; }
+  summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    font-family: var(--font-display); font-size: 1.35rem; color: var(--ink); }
+  summary::-webkit-details-marker { display: none; }
+  summary .plus { width: 32px; height: 32px; border-radius: 50%; background: var(--sage-light); display: grid; place-items: center;
+    color: var(--sage); font-family: var(--font-body); font-size: 1.1rem; flex-shrink: 0; transition: transform .35s, background .35s; }
+  details[open] summary .plus { transform: rotate(45deg); background: var(--blush); color: var(--white); }
+  details p { color: var(--ink-mid); margin-top: .75rem; padding-right: 3rem; animation: fadeDown .4s ease; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+  /* BOOKING */
+  .booking-bg { background: var(--ink); overflow: hidden; }
+  .booking-bg .section-heading { color: var(--white); }
+  .booking-bg .section-heading em { color: var(--sage-mid); }
+  .booking-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 5rem; align-items: start; position: relative; z-index: 1; }
+  .booking-info > p { color: rgba(253,252,250,0.65); line-height: 1.8; margin-bottom: 1.5rem; }
+  .booking-details { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-top: 2rem; }
+  .booking-detail {
+    display: flex; align-items: center; gap: .75rem; color: rgba(253,252,250,0.85); font-size: 0.86rem;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: .9rem; padding: .8rem 1rem;
+    transition: background .3s, transform .3s;
+  }
+  .booking-detail:hover { background: rgba(255,255,255,.1); transform: translateY(-3px); }
+  .booking-detail .i { font-size: 1.1rem; }
+  .booking-detail a { color: var(--sage-mid); text-decoration: none; word-break: break-all; }
+  .booking-detail.wide { grid-column: 1 / -1; }
+
+  .booking-form { background: rgba(255,255,255,0.05); border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.1); padding: 2.5rem; }
+  .form-title { font-family: var(--font-display); font-size: 1.6rem; color: var(--white); margin-bottom: 1.75rem; font-weight: 300; }
+  .form-group { margin-bottom: 1.25rem; position: relative; }
+  label, .lbl { display: block; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(253,252,250,0.5); margin-bottom: 0.5rem; }
+  input, textarea {
+    width: 100%; padding: 0.9rem 1rem; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 0.75rem; color: var(--white); font-family: var(--font-body); font-size: 0.92rem; font-weight: 300;
+    transition: border-color 0.25s, background .25s, box-shadow .25s; outline: none;
+  }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.3); }
+  input:focus, textarea:focus { border-color: var(--sage-mid); background: rgba(255,255,255,.1); box-shadow: 0 0 0 4px rgba(184,204,191,.15); }
+  input.bad { border-color: var(--blush); animation: shake .4s; }
+  @keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+  textarea { resize: vertical; min-height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .chip-opt { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.18); color: rgba(253,252,250,.8);
+    border-radius: 2rem; padding: .5rem .95rem; font-size: .8rem; cursor: pointer; transition: all .25s; }
+  .chip-opt:hover { border-color: var(--sage-mid); transform: translateY(-2px); }
+  .chip-opt.on { background: var(--sage-mid); color: var(--ink); border-color: var(--sage-mid); font-weight: 400; }
+  .char-count { position: absolute; right: .75rem; bottom: .6rem; font-size: .7rem; color: rgba(255,255,255,.3); }
+  .submit-btn {
+    width: 100%; padding: 1.05rem; background: var(--sage); border: none; border-radius: 0.9rem; color: var(--white);
+    font-size: 0.95rem; font-weight: 400; letter-spacing: 0.05em; cursor: pointer; margin-top: 0.5rem;
+    transition: background 0.25s, transform 0.2s; position: relative; overflow: hidden;
+  }
+  .submit-btn:hover { background: var(--warm); transform: translateY(-2px); }
+  .submit-btn:disabled { opacity: .7; cursor: wait; }
+  .success-msg { display: none; text-align: center; padding: 3rem 2rem; color: var(--white);
+    background: rgba(255,255,255,0.05); border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
+  .success-msg .check { width: 72px; height: 72px; margin: 0 auto 1.25rem; border-radius: 50%; background: var(--sage);
+    display: grid; place-items: center; font-size: 2rem; animation: pop .6s cubic-bezier(.3,1.8,.5,1); }
+  @keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+  .success-msg h3 { font-family: var(--font-display); font-size: 1.7rem; font-weight: 300; margin-bottom: 0.5rem; }
+  .success-msg p { color: rgba(253,252,250,0.65); font-size: 0.92rem; }
+  .petal { position: fixed; pointer-events: none; z-index: 300; font-size: 1.3rem; animation: petal 1.8s ease-out forwards; }
+  @keyframes petal {
+    0% { transform: translate(0,0) rotate(0) scale(.4); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1); opacity: 0; }
+  }
+
+  /* FOOTER */
+  footer { padding: 3rem 8%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; background: var(--white); }
+  .footer-name { font-family: var(--font-display); font-size: 1.3rem; color: var(--ink); }
+  .footer-copy { font-size: 0.78rem; color: var(--ink-soft); }
+  .footer-contact { font-size: 0.84rem; color: var(--ink-mid); }
+  .footer-contact a { color: var(--sage); text-decoration: none; }
+  .to-top { background: var(--sage-light); border: 0; width: 42px; height: 42px; border-radius: 50%; cursor: pointer; font-size: 1.1rem;
+    color: var(--sage); transition: transform .3s; }
+  .to-top:hover { transform: translateY(-4px); }
+
+  /* WHATSAPP FAB */
+  .wa-fab {
+    position: fixed; right: 1.5rem; bottom: 1.5rem; z-index: 90; width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; display: grid; place-items: center; box-shadow: 0 10px 25px rgba(37,211,102,.4);
+    transition: transform .3s; text-decoration: none;
+  }
+  .wa-fab:hover { transform: scale(1.1) rotate(-8deg); }
+  .wa-fab svg { width: 30px; height: 30px; fill: #fff; }
+  .wa-fab .tip { position: absolute; right: 70px; background: var(--ink); color: #fff; font-size: .78rem; padding: .45rem .8rem;
+    border-radius: .6rem; white-space: nowrap; opacity: 0; transform: translateX(8px); transition: .3s; pointer-events: none; }
+  .wa-fab:hover .tip { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding: 8rem 6% 3rem; text-align: left; gap: 1.5rem; }
+    .hero-visual { display: none; min-height: 0; }
+    .c1 { left: 0; } .c3 { left: 0; } .c2 { right: 0; }
+    .about-grid, .approach-grid, .booking-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  @media (max-width: 768px) {
+    .burger { display: block; }
+    .nav-links {
+      position: absolute; top: 100%; left: 0; right: 0; z-index: -1; flex-direction: column; gap: 1.25rem; padding: 2rem;
+      background: var(--white); border-bottom: 1px solid var(--border); transform: translateY(-130%);
+      transition: transform .4s ease; box-shadow: var(--shadow);
+    }
+    .nav-links.open { transform: none; }
+    section { padding: 3.5rem 6%; }
+    .form-row, .booking-details { grid-template-columns: 1fr; }
+    .booking-form { padding: 1.75rem; }
+    .float-chip { padding: .55rem .8rem; }
+    .chip-value { font-size: .92rem; }
+    .c4 { display: none; }
+    .flip { height: 300px; }
+    .mood { min-width: 96px; padding: .9rem; }
+    details p { padding-right: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+    .hero-name span { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<header class="topbar">
+<!-- NAV -->
+<nav id="nav">
+  <a href="#top" class="nav-logo"><span class="logo-leaf">🌿</span> Hina Razaq</a>
+  <button class="burger" id="burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#breathe">Breathe</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#book" class="nav-cta">Book a session</a></li>
+  </ul>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-eyebrow"><span class="badge-dot"></span>Now taking online appointments</p>
+    <h1 class="hero-name">
+      <span style="animation-delay:.1s">Hina</span>
+      <span style="animation-delay:.3s"> <em>Razaq</em></span>
+    </h1>
+    <p class="hero-rotator">A warm space to feel <span class="rot-word" id="rotWord">heard</span></p>
+    <p class="hero-desc">
+      Clinical Psychologist offering evidence-informed online sessions for adults, children and families,
+      wherever you are.
+    </p>
+    <div class="hero-actions">
+      <a href="#book" class="btn-primary">Book a session <span class="arrow">→</span></a>
+      <a href="#checkin" class="btn-secondary">How are you today?</a>
+    </div>
+    <div class="hero-note">
+      <svg viewBox="0 0 48 30"><path d="M2 4 C 14 28, 30 28, 44 12"/><path d="M36 10 L44 12 L42 20"/></svg>
+      <span class="hand">first step is the bravest one</span>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="photo-frame">
+      <img src="data:image/jpeg;base64,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" alt="Clinical psychologist illustration">
+    </div>
+  </div>
+</section>
+
+<!-- MOOD CHECK-IN -->
+<section class="mood-section" id="checkin">
+  <p class="section-label reveal">A gentle check-in</p>
+  <h2 class="section-heading reveal d1">How is your heart today?</h2>
+  <p class="mood-sub reveal d2">Tap whatever feels closest. There's no wrong answer.</p>
+  <div class="moods reveal d3" id="moods">
+    <button class="mood" data-mood="anxious"><span class="emo">😟</span>Anxious</button>
+    <button class="mood" data-mood="low"><span class="emo">😔</span>Low</button>
+    <button class="mood" data-mood="overwhelmed"><span class="emo">🤯</span>Overwhelmed</button>
+    <button class="mood" data-mood="child"><span class="emo">🧸</span>Worried about my child</button>
+    <button class="mood" data-mood="curious"><span class="emo">🌱</span>Just curious</button>
+  </div>
+  <div class="mood-result" id="moodResult" aria-live="polite">
+    <h3 id="moodTitle"></h3>
+    <p id="moodText"></p>
+    <p class="suggest">Might be a good fit: <b id="moodService"></b></p>
+    <button class="btn-primary" id="moodBook">Let's talk about it <span class="arrow">→</span></button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:var(--white); padding-top:2rem;">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p class="section-label">About me</p>
+      <h2 class="section-heading">Psychology, education,<br>and genuine care</h2>
+      <p>
+        I'm Hina Razaq, a clinical psychologist based in Islamabad with experience
+        spanning mental health, child development, special needs education and psychosocial support.
+      </p>
+      <p>
+        My career has taken me from inpatient psychiatric wards at PIMS to rehabilitation centres
+        and special schools, giving me a broad, grounded perspective on what people actually need
+        to thrive.
+      </p>
+      <p>
+        I am a clinical psychologist with a Masters Degree in Applied Psychology and an Advanced Diploma in Clinical Psychology. I am also certified in the Griffiths III Child Developmental Assessment. I offer online sessions that are warm, evidence-informed and adapted to you.
+      </p>
+      <span class="hand">~ Hina</span>
+      <div class="places">
+        <span>🏥 Psychiatric wards · PIMS</span>
+        <span>🤝 Rehabilitation centres</span>
+        <span>🏫 Special schools</span>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <div class="tl-title">Qualifications</div>
+      <div class="timeline">
+        <div class="qual-item">
+          <div class="qual-year">2025–26</div>
+          <div class="qual-name">Advanced Diploma in Clinical Psychology</div>
+          <div class="qual-inst">NUML University, Islamabad</div>
+        </div>
+        <div class="qual-item">
+          <div class="qual-year">2024</div>
+          <div class="qual-name">Griffiths III Child Developmental Assessment</div>
+          <div class="qual-inst">Certified Online Training</div>
+        </div>
+        <div class="qual-item">
+          <div class="qual-year">1999–01</div>
+          <div class="qual-name">MSc Applied Psychology (Clinical)</div>
+          <div class="qual-inst">University of the Punjab, ICG</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-bg">
+  <div class="services-head" style="position:relative;z-index:1;">
+    <div class="reveal">
+      <p class="section-label">What I offer</p>
+      <h2 class="section-heading" style="margin-bottom:0;">Sessions tailored<br>to your needs</h2>
+    </div>
+    <div class="price-tag reveal d2">
+      <div class="per">Every session</div>
+      <div class="amt">PKR 3,000</div>
+      <div class="per">40 minutes · online</div>
+    </div>
+  </div>
+  <div class="services-grid" style="position:relative;z-index:1;">
+    <button class="flip s1 reveal" data-service="Supportive counselling (Adult)">
+      <div class="flip-inner">
+        <div class="face front">
+          <div class="big-ic">💬</div>
+          <div>
+            <div class="service-title">Supportive Counselling</div>
+            <span class="service-tag" style="margin-top:.75rem;">Adults</span>
+          </div>
+          <div class="turn">↻ Flip to learn more</div>
+        </div>
+        <div class="face back">
+          <div>
+            <div class="service-title">Supportive Counselling</div>
+            <div class="service-desc">One-to-one sessions for adults navigating stress, anxiety, depression, life transitions, or simply needing a safe space to talk and reflect.</div>
+          </div>
+          <span class="book-this">Book this →</span>
+        </div>
+      </div>
+    </button>
+    <button class="flip s2 reveal d1" data-service="Child psychology & assessment">
+      <div class="flip-inner">
+        <div class="face front">
+          <div class="big-ic">🧒</div>
+          <div>
+            <div class="service-title">Child Psychology & Assessment</div>
+            <span class="service-tag" style="margin-top:.75rem;">Children · Families</span>
+          </div>
+          <div class="turn">↻ Flip to learn more</div>
+        </div>
+        <div class="face back">
+          <div>
+            <div class="service-title">Child Psychology & Assessment</div>
+            <div class="service-desc">Developmental assessments, behavioural support, and tailored plans for children including those with special educational needs and neurodevelopmental challenges.</div>
+          </div>
+          <span class="book-this">Book this →</span>
+        </div>
+      </div>
+    </button>
+    <button class="flip s3 reveal d2" data-service="Education & psychosocial support">
+      <div class="flip-inner">
+        <div class="face front">
+          <div class="big-ic">📚</div>
+          <div>
+            <div class="service-title">Education & Psychosocial Support</div>
+            <span class="service-tag" style="margin-top:.75rem;">Education</span>
+          </div>
+          <div class="turn">↻ Flip to learn more</div>
+        </div>
+        <div class="face back">
+          <div>
+            <div class="service-title">Education & Psychosocial Support</div>
+            <div class="service-desc">Guidance for parents, teachers, and students on learning difficulties, classroom management, inclusive education, and student wellbeing.</div>
+          </div>
+          <span class="book-this">Book this →</span>
+        </div>
+      </div>
+    </button>
+    <button class="flip s4 reveal d3" data-service="Recovery & relapse prevention">
+      <div class="flip-inner">
+        <div class="face front">
+          <div class="big-ic">🔄</div>
+          <div>
+            <div class="service-title">Recovery & Relapse Prevention</div>
+            <span class="service-tag" style="margin-top:.75rem;">Adults</span>
+          </div>
+          <div class="turn">↻ Flip to learn more</div>
+        </div>
+        <div class="face back">
+          <div>
+            <div class="service-title">Recovery & Relapse Prevention</div>
+            <div class="service-desc">Drawing on clinical experience in rehabilitation settings, sessions to support recovery journeys and build lasting coping strategies.</div>
+          </div>
+          <span class="book-this">Book this →</span>
+        </div>
+      </div>
+    </button>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach">
+  <div class="approach-grid">
+    <div class="reveal">
+      <p class="section-label">My approach</p>
+      <h2 class="section-heading">How a session<br>works</h2>
+      <div class="steps" id="steps">
+        <div class="steps-line"><div class="steps-fill" id="stepsFill"></div></div>
+        <div class="step open">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">Initial consultation <span class="chev">▶</span></div>
+            <div class="step-desc">We talk about what brings you here, what you're hoping for and whether we're a good fit. No pressure, no commitment.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">Assessment & formulation <span class="chev">▶</span></div>
+            <div class="step-desc">I take time to understand your background, your strengths and your goals and we build a shared picture together.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">Ongoing sessions <span class="chev">▶</span></div>
+            <div class="step-desc">Regular online sessions, flexible to your schedule. We work at your pace, checking in on progress as we go.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">Review & next steps <span class="chev">▶</span></div>
+            <div class="step-desc">We periodically review what's working and adapt the approach because your needs will shift and so will our work.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="approach-side reveal d2">
+      <div class="affirm">
+        <div class="affirm-text" id="affirmText">"Every person carries a story worth understanding with patience and care."</div>
+        <div class="affirm-row">
+          <div class="affirm-attr" id="affirmAttr">The guiding principle behind every session</div>
+          <button class="draw-btn" id="drawBtn">✨ Draw a kind thought</button>
+        </div>
+      </div>
+      <div class="pills">
+        <span class="pill">Empathetic listening</span>
+        <span class="pill">Evidence-informed</span>
+        <span class="pill">Culturally sensitive</span>
+        <span class="pill">Child-centred</span>
+        <span class="pill">Collaborative</span>
+        <span class="pill">Non-judgemental</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BREATHE -->
+<section id="breathe" class="breathe-section">
+  <p class="section-label reveal">Take a moment</p>
+  <h2 class="section-heading reveal d1">Let's <em>breathe</em> together</h2>
+  <p class="breathe-sub reveal d2">A simple box-breathing exercise: in for 4, hold for 4, out for 4, hold for 4. Try three rounds.</p>
+  <div class="breathe-wrap">
+    <div class="breathe-ring"></div>
+    <div class="breathe-circle" id="breatheCircle"><span class="breathe-word" id="breatheWord">Ready?</span></div>
+  </div>
+  <button class="btn-primary" id="breatheBtn">Start breathing</button>
+  <p class="breathe-count" id="breatheCount"></p>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-wrap">
+    <p class="section-label reveal">Good to know</p>
+    <h2 class="section-heading reveal d1">Questions you might have</h2>
+    <div class="reveal d2">
+      <details open>
+        <summary>How long is a session and how much does it cost?<span class="plus">+</span></summary>
+        <p>Each session lasts 40 minutes and costs PKR 3,000.</p>
+      </details>
+      <details>
+        <summary>Where do sessions happen?<span class="plus">+</span></summary>
+        <p>All sessions are online, over Zoom or Google Meet, so you can join from wherever you feel comfortable. Scheduling is flexible across time zones.</p>
+      </details>
+      <details>
+        <summary>Is what I share kept confidential?<span class="plus">+</span></summary>
+        <p>Yes. Sessions are confidential and non-judgemental: a safe space to talk openly.</p>
+      </details>
+      <details>
+        <summary>Do you work with children?<span class="plus">+</span></summary>
+        <p>Yes. I offer child psychology support and developmental assessments (I'm certified in Griffiths III), and I work with parents and teachers too.</p>
+      </details>
+      <details>
+        <summary>What happens after I send a request?<span class="plus">+</span></summary>
+        <p>I'll be in touch within 24–48 hours to confirm your slot and share session details. The first conversation is about getting to know each other, with no pressure and no commitment.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="book" class="booking-bg">
+  <div class="booking-grid">
+    <div class="booking-info reveal">
+      <p class="section-label">Book a session</p>
+      <h2 class="section-heading">Let's start a<br><em>conversation</em></h2>
+      <p>Fill in the form and I'll be in touch within 24–48 hours to confirm your slot and share session details.</p>
+      <div class="booking-details">
+        <div class="booking-detail"><span class="i">💳</span>PKR 3,000 per session</div>
+        <div class="booking-detail"><span class="i">⏱️</span>40-minute sessions</div>
+        <div class="booking-detail"><span class="i">💻</span>Zoom or Google Meet</div>
+        <div class="booking-detail"><span class="i">🌍</span>Flexible across time zones</div>
+        <div class="booking-detail wide"><span class="i">🔒</span>Confidential and non-judgemental</div>
+        <div class="booking-detail wide"><span class="i">✉️</span><a href="mailto:Hinaabbasir@gmail.com">Hinaabbasir@gmail.com</a></div>
+        <div class="booking-detail wide"><span class="i">📱</span><a href="https://wa.me/923005555587" target="_blank" rel="noopener">WhatsApp: +92 300 555 5587</a></div>
+      </div>
+    </div>
+
+    <div class="reveal d2">
+      <div class="booking-form" id="bookingForm">
+        <div class="form-title">Request an appointment</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" placeholder="e.g. Aaria">
+          </div>
+          <div class="form-group">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" placeholder="e.g. Khan">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label for="whatsapp">WhatsApp / phone (optional)</label>
+          <input type="tel" id="whatsapp" placeholder="+92...">
+        </div>
+        <div class="form-group">
+          <span class="lbl">Type of session</span>
+          <div class="chips" id="sessionChips">
+            <button type="button" class="chip-opt" data-v="Supportive counselling (Adult)">💬 Counselling (Adult)</button>
+            <button type="button" class="chip-opt" data-v="Child psychology & assessment">🧒 Child & assessment</button>
+            <button type="button" class="chip-opt" data-v="Education & psychosocial support">📚 Education support</button>
+            <button type="button" class="chip-opt" data-v="Recovery & relapse prevention">🔄 Recovery</button>
+            <button type="button" class="chip-opt" data-v="Not sure, I'd like to discuss">🤔 Not sure yet</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Anything you'd like to share (optional)</label>
+          <textarea id="message" maxlength="600" placeholder="Brief context about what brings you here, your time zone, or preferred times…"></textarea>
+          <span class="char-count" id="charCount">0 / 600</span>
+        </div>
+        <button class="submit-btn" id="submitBtn">Send request →</button>
+      </div>
+      <div class="success-msg" id="successMsg">
+        <div class="check">✓</div>
+        <h3>Thank you, message received</h3>
+        <p>Hina will be in touch within 24–48 hours to confirm your session.</p>
+        <p class="hand" style="margin-top:1rem;color:var(--sage-mid);">you did something kind for yourself today 🌿</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-name">🌿 Hina Razaq</div>
+    <div class="footer-copy">© 2025 Hina Razaq · Clinical Psychologist · Islamabad, Pakistan</div>
+  </div>
+  <div class="footer-contact">
+    <a href="mailto:Hinaabbasir@gmail.com">Hinaabbasir@gmail.com</a> &nbsp;·&nbsp;
+    <a href="tel:+923005555587">+92 300 555 5587</a>
+  </div>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/923005555587" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <span class="tip">Say hello on WhatsApp</span>
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zm8.4-18.2C18.1 1.3 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.6-8.4z"/></svg>
+</a>
+
+<script>
+  const $ = s => document.querySelector(s);
+  const $$ = s => document.querySelectorAll(s);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Nav: scroll state, progress bar, mobile menu */
+  const nav = $('#nav'), progress = $('#progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    progress.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+    nav.classList.toggle('scrolled', h.scrollTop > 30);
+    updateSteps();
+  }, { passive: true });
+  $('#burger').addEventListener('click', () => {
+    $('#burger').classList.toggle('open');
+    $('#navLinks').classList.toggle('open');
+  });
+  $$('#navLinks a').forEach(a => a.addEventListener('click', () => {
+    $('#burger').classList.remove('open');
+    $('#navLinks').classList.remove('open');
+  }));
+  $('#toTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  /* Reveal on scroll */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  $$('.reveal').forEach(el => io.observe(el));
+
+  /* Hero rotating word */
+  const words = ['heard', 'understood', 'supported', 'safe', 'like yourself again'];
+  let wi = 0;
+  const rot = $('#rotWord');
+  if (!reduceMotion) setInterval(() => {
+    rot.classList.add('out');
+    setTimeout(() => { wi = (wi + 1) % words.length; rot.textContent = words[wi]; rot.classList.remove('out'); }, 400);
+  }, 2600);
+
+  /* Pre-select a session type and jump to the form */
+  function bookFor(service) {
+    $$('.chip-opt').forEach(c => c.classList.toggle('on', c.dataset.v === service));
+    $('#book').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  /* Mood check-in */
+  const moods = {
+    anxious: { t: 'Anxiety can feel so loud.', p: "Racing thoughts, a tight chest, the what-ifs. You don't have to untangle them alone. Together we can find what's driving the worry and build tools that actually help.", s: 'Supportive counselling (Adult)' },
+    low: { t: "It's okay to not be okay.", p: "Feeling low can make even small things heavy. A gentle, non-judgemental space to talk can be a meaningful first step back towards yourself.", s: 'Supportive counselling (Adult)' },
+    overwhelmed: { t: 'One thing at a time.', p: "When life stacks up, everything feels urgent. Sessions can help you slow down, sort through what matters and find some breathing room. Try the breathing exercise below too.", s: 'Supportive counselling (Adult)' },
+    child: { t: 'Caring for them starts with you asking.', p: "Whether it's development, behaviour, learning or big feelings, understanding what's going on is the first step. Assessments and tailored plans can bring real clarity.", s: 'Child psychology & assessment' },
+    curious: { t: 'Curiosity is a great place to start.', p: "You don't need a crisis to benefit from talking things through. A first conversation is simply about getting to know each other, with no pressure and no commitment.", s: "Not sure, I'd like to discuss" }
+  };
+  let currentMoodService = null;
+  $$('.mood').forEach(btn => btn.addEventListener('click', () => {
+    $$('.mood').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const m = moods[btn.dataset.mood];
+    $('#moodTitle').textContent = m.t;
+    $('#moodText').textContent = m.p;
+    $('#moodService').textContent = m.s;
+    currentMoodService = m.s;
+    $('#moodResult').classList.add('show');
+  }));
+  $('#moodBook').addEventListener('click', () => bookFor(currentMoodService));
+
+  /* Service flip cards */
+  $$('.flip').forEach(card => card.addEventListener('click', e => {
+    if (e.target.closest('.book-this') && card.classList.contains('flipped') || e.target.closest('.book-this') && window.matchMedia('(hover: hover)').matches) {
+      bookFor(card.dataset.service); return;
+    }
+    card.classList.toggle('flipped');
+  }));
+
+  /* Approach steps: fill line on scroll, click to expand */
+  const stepEls = $$('.step'), stepsBox = $('#steps'), fill = $('#stepsFill');
+  function updateSteps() {
+    const r = stepsBox.getBoundingClientRect();
+    const mid = window.innerHeight * 0.6;
+    const pct = Math.max(0, Math.min(1, (mid - r.top) / r.height));
+    fill.style.height = pct * 100 + '%';
+    stepEls.forEach(s => {
+      const sr = s.getBoundingClientRect();
+      s.classList.toggle('lit', sr.top + 28 < mid);
+    });
+  }
+  stepEls.forEach(s => s.addEventListener('click', () => {
+    const wasOpen = s.classList.contains('open');
+    stepEls.forEach(x => x.classList.remove('open'));
+    if (!wasOpen) s.classList.add('open');
+  }));
+  updateSteps();
+
+  /* Affirmation cards */
+  const affirmations = [
+    ['"Every person carries a story worth understanding with patience and care."', 'The guiding principle behind every session'],
+    ['"You are allowed to take up space, including space to heal."', 'A kind thought for today'],
+    ['"Progress, not perfection. Small steps still move you forward."', 'A kind thought for today'],
+    ['"Your feelings are valid, even the messy, confusing ones."', 'A kind thought for today'],
+    ['"Asking for help is a sign of strength, not weakness."', 'A kind thought for today'],
+    ['"Rest is productive too."', 'A kind thought for today'],
+    ['"You have survived every hard day so far. That counts."', 'A kind thought for today'],
+    ['"Be as gentle with yourself as you would be with a friend."', 'A kind thought for today']
+  ];
+  let ai = 0;
+  $('#drawBtn').addEventListener('click', () => {
+    const t = $('#affirmText');
+    t.classList.add('out');
+    setTimeout(() => {
+      let n; do { n = Math.floor(Math.random() * affirmations.length); } while (n === ai);
+      ai = n;
+      t.textContent = affirmations[ai][0];
+      $('#affirmAttr').textContent = affirmations[ai][1];
+      t.classList.remove('out');
+    }, 400);
+  });
+
+  /* Box breathing */
+  const phases = [['Breathe in', true], ['Hold', true], ['Breathe out', false], ['Hold', false]];
+  let breathing = false, bTimer = null, phase = 0, rounds = 0;
+  const circle = $('#breatheCircle'), bWord = $('#breatheWord'), bBtn = $('#breatheBtn'), bCount = $('#breatheCount');
+  function stepBreath() {
+    const [label, big] = phases[phase];
+    bWord.textContent = label;
+    circle.classList.toggle('grow', big);
+    phase = (phase + 1) % 4;
+    if (phase === 0) {
+      rounds++;
+      bCount.textContent = rounds < 3 ? `Round ${rounds} of 3 done` : 'Lovely. Three rounds complete 🌿';
+      if (rounds >= 3) { setTimeout(stopBreath, 4000); return; }
+    }
+    bTimer = setTimeout(stepBreath, 4000);
+  }
+  function stopBreath() {
+    breathing = false; clearTimeout(bTimer);
+    circle.classList.remove('grow');
+    bWord.textContent = rounds >= 3 ? 'Well done' : 'Ready?';
+    bBtn.textContent = rounds >= 3 ? 'Go again' : 'Start breathing';
+  }
+  bBtn.addEventListener('click', () => {
+    if (breathing) { stopBreath(); return; }
+    breathing = true; phase = 0; rounds = 0; bCount.textContent = '';
+    bBtn.textContent = 'Stop';
+    stepBreath();
+  });
+
+  /* Booking form */
+  $$('.chip-opt').forEach(c => c.addEventListener('click', () => {
+    const on = c.classList.contains('on');
+    $$('.chip-opt').forEach(x => x.classList.remove('on'));
+    if (!on) c.classList.add('on');
+  }));
+  $('#message').addEventListener('input', e => { $('#charCount').textContent = e.target.value.length + ' / 600'; });
+  $$('input').forEach(i => i.addEventListener('input', () => i.classList.remove('bad')));
+
+  function petals(x, y) {
+    if (reduceMotion) return;
+    const bits = ['🌿', '🌸', '✿', '🍃', '💚'];
+    for (let i = 0; i < 26; i++) {
+      const p = document.createElement('span');
+      p.className = 'petal';
+      p.textContent = bits[i % bits.length];
+      p.style.left = x + 'px'; p.style.top = y + 'px';
+      const ang = Math.random() * Math.PI * 2, dist = 120 + Math.random() * 220;
+      p.style.setProperty('--x', Math.cos(ang) * dist + 'px');
+      p.style.setProperty('--y', Math.sin(ang) * dist - 80 + 'px');
+      p.style.setProperty('--r', (Math.random() * 720 - 360) + 'deg');
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 1900);
+    }
+  }
+
+  $('#submitBtn').addEventListener('click', async () => {
+    const fname = $('#fname').value.trim();
+    const lname = $('#lname').value.trim();
+    const email = $('#email').value.trim();
+    const whatsapp = $('#whatsapp').value.trim();
+    const chosen = $('.chip-opt.on');
+    const sessionType = chosen ? chosen.dataset.v : '';
+    const message = $('#message').value.trim();
+
+    let ok = true;
+    if (!fname) { $('#fname').classList.add('bad'); ok = false; }
+    if (!email || !/^\S+@\S+\.\S+$/.test(email)) { $('#email').classList.add('bad'); ok = false; }
+    if (!ok) return;
+
+    const btn = $('#submitBtn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const response = await fetch('https://formspree.io/f/xrenoorq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: fname + ' ' + lname,
+          email: email,
+          whatsapp: whatsapp,
+          session_type: sessionType,
+          message: message
+        })
+      });
+
+      if (response.ok) {
+        const r = btn.getBoundingClientRect();
+        petals(r.left + r.width / 2, r.top);
+        $('#bookingForm').style.display = 'none';
+        $('#successMsg').style.display = 'block';
+      } else {
+        throw new Error('Request failed');
+      }
+    } catch (err) {
+      alert('Something went wrong. Please try again or email directly at Hinaabbasir@gmail.com');
+      btn.textContent = 'Send request →';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
